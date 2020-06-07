@@ -8,6 +8,16 @@ import mimetypes
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+def get_mailing_list():
+    mailinglist = []
+
+    with open('mailinglist.txt', 'r') as f:
+        for line in f:
+            mailinglist.append(line.strip())
+
+    print(mailinglist)
+    return mailinglist
+
 def form_email_contents(posts):
     doc = dominate.document(title="test")
 

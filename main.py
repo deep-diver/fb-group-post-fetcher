@@ -15,7 +15,8 @@ async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS):
                                             post.numbers["reaction"]    * WEIGHTS_REACTIONS + 
                                             post.numbers["share"]       * WEIGHTS_SHARES + 
                                             post.numbers["comment"]     * WEIGHTS_COMMENTS, reverse=True)
-            sendmail('chansung18@gmail.com', sortedPost)
+            mailinglist = get_mailing_list()
+            sendmail(','.join(mailinglist), sortedPost)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Please specify the range of dates and the number of posts to be collected')
