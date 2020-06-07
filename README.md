@@ -11,6 +11,9 @@ This repository contains simple source codes to scrap posts from a certain faceb
 - number of shares
 
 Also the scrapped posts are sorted via the following formula. You can change the weights from the CLI. Please look at the section below.
+```
+  (# of reactions * WEIGHT_REACTIONS) + (# of shares * WEIGHT_SHARES) + (# of comments * WEIGHT_COMMENTS)
+```
 
 ## Usage
 
@@ -48,9 +51,9 @@ $ python main.py --since 2020-01-10 --until 2020-01-20 --limit 50
 $ python main.py --since 2020-01-10 --until 2020-01-20 --limit weights-reactions=0.5 --weights-shares=0.8 --weights-comments=1
 ```
 
-## Requirements
+## Requirements (Mantatory)
 
-You must specify the following two values via `.env`. `.env` is something you need to create on your own.
+You must specify the following four values via `.env`. `.env` is something you need to create on your own.
 
 ### Facebook Specific Information
 
@@ -73,3 +76,5 @@ SMTP_USER=XXX
 # For example, this is your emails app password in Gmail.
 SMTP_PASS=XXX
 ```
+
+Along with these, you also need to specify the list of email addresses which you want to send an email to. You can edit the list in `mailinglist.txt`. Just put an email address with a line break.
