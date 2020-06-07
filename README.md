@@ -57,7 +57,7 @@ You must specify the following four values via `.env`. `.env` is something you n
 
 ### Facebook Specific Information
 
-In order to enable facebook specific information, you may need to follow the [instructions](https://developers.facebook.com/docs/groups-api/). However, you dont' need to request `App Review` process if you just want to test not deploying to the real world. 
+In order to enable facebook specific information, you may need to follow the [instructions](https://developers.facebook.com/docs/groups-api/). However, you dont' need to request `App Review` process if you just want to test not deploying to the real world. In this case, you could just get a temporary access token via [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
 
 ```
 FB_GROUP_ID=XXX
