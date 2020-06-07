@@ -88,3 +88,15 @@ This one specify the number of Top K posts to keep as in the email content.
 
 ### FIRST_WORDS
 Message for a post could be too long. This variable specify the number of words to keep to be appeared as in the email content.
+
+
+### `.env` example
+```
+FB_GROUP_ID=X
+FB_ACCESS_TOKEN=XXX
+SMTP_USER=XXX
+SMTP_PASS=XXX
+
+TOP_K=10
+FIRST_WORDS=50
+```
