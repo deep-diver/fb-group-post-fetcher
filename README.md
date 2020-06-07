@@ -37,15 +37,15 @@ optional arguments:
 
 ### Example
 ```shell
-$ python main.py --from 2020-01-10 --until 2020-01-20
+$ python main.py --since 2020-01-10 --until 2020-01-20
 ```
 
 ```shell
-$ python main.py --from 2020-01-10 --until 2020-01-20 --limit 50
+$ python main.py --since 2020-01-10 --until 2020-01-20 --limit 50
 ```
 
 ```shell
-$ python main.py --from 2020-01-10 --until 2020-01-20 --limit weights-reactions=0.5 --weights-shares=0.8 --weights-comments=1
+$ python main.py --since 2020-01-10 --until 2020-01-20 --limit weights-reactions=0.5 --weights-shares=0.8 --weights-comments=1
 ```
 
 ## Requirements
