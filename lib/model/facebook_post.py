@@ -10,7 +10,7 @@ class FacebookPost(object):
 
     id          : str
     message     : str
-    numbers     : Dict[str, int] # reactions, comments, shares
+    numbers     : Dict[str, int] # reaction, comment, share
     link        : str
     updated_time: datetime.datetime
 

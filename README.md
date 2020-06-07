@@ -78,3 +78,13 @@ SMTP_PASS=XXX
 ```
 
 Along with these, you also need to specify the list of email addresses which you want to send an email to. You can edit the list in `mailinglist.txt`. Just put an email address with a line break.
+
+## Requirements (Optional)
+
+You could modify some variables in `.env` file to meet your need
+
+### TOP_K
+This one specify the number of Top K posts to keep as in the email content.
+
+### FIRST_WORDS
+Message for a post could be too long. This variable specify the number of words to keep to be appeared as in the email content.

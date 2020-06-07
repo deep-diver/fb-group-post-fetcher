@@ -1,4 +1,6 @@
-from static.constants import SMTP_USER, SMTP_PASS
+from typing import List
+
+from static.constants import SMTP_USER, SMTP_PASS, FIRST_WORDS
 
 import dominate
 from dominate.tags import *
@@ -8,21 +10,14 @@ import mimetypes
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-def get_mailing_list():
-    mailinglist = []
-
+def get_mailing_list() -> List[str]:
     with open('mailinglist.txt', 'r') as f:
-        for line in f:
-            mailinglist.append(line.strip())
+        return f.readlines()
 
-    print(mailinglist)
-    return mailinglist
+    return None
 
 def form_email_contents(posts):
     doc = dominate.document(title="test")
-
-    with doc.head:
-        link(rel='stylesheet', href='../static/email_style.css')
 
     with doc:
         with table():
@@ -36,26 +31,29 @@ def form_email_contents(posts):
 
             for post in posts:
                 with tr():
-                    th(post.message[:20])
-                    th(post.numbers['reaction'])
-                    th(post.numbers['comment'])
-                    th(post.numbers['share'])
-                    th(str(post.updated_time))
-                    th(a('링크', href=post.link))
+                    th(post.message[:FIRST_WORDS],  style="text-align: left; padding-left: 10px; padding-right: 10px;")
+                    th(post.numbers['reaction'],    style="text-align: center; padding-left: 10px; padding-right: 10px;")
+                    th(post.numbers['comment'],     style="text-align: center; padding-left: 10px; padding-right: 10px;")
+                    th(post.numbers['share'],       style="text-align: center; padding-left: 10px; padding-right: 10px;")
+                    th(str(post.updated_time),      style="text-align: center; padding-left: 10px; padding-right: 10px;")
+                    th(a('링크', href=post.link),    style="text-align: center; padding-left: 10px; padding-right: 10px;")
 
     return doc
 
-def sendmail(to_addr, posts):
-    message = MIMEMultipart('alternative')
+def sendmail(posts):
+    if (mailinglist := get_mailing_list()) is not None:
+        mailinglist = get_mailing_list()
 
-    message['Subject'] = '<리포팅>TF-KR 지난 7일간의 Top 포스팅 목록'
-    message['From'] = SMTP_USER
-    message['To'] = to_addr
+        message = MIMEMultipart('alternative')
 
-    contents = form_email_contents(posts)
-    message.attach(MIMEText(str(contents), 'html'))
+        message['Subject'] = '<리포팅>TF-KR 지난 7일간의 Top 포스팅 목록'
+        message['From'] = SMTP_USER
+        message['To'] = ", ".join(mailinglist)
 
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-        server.ehlo()
-        server.login(SMTP_USER, SMTP_PASS)
-        server.sendmail(SMTP_USER, to_addr, message.as_string())    
+        contents = form_email_contents(posts)
+        message.attach(MIMEText(str(contents), 'html'))
+
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+            server.ehlo()
+            server.login(SMTP_USER, SMTP_PASS)
+            server.sendmail(SMTP_USER, mailinglist, message.as_string())    
