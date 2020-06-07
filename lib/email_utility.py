@@ -31,7 +31,8 @@ def form_email_contents(posts):
 
             for post in posts:
                 with tr():
-                    th(post.message[:FIRST_WORDS],  style="text-align: left; padding-left: 10px; padding-right: 10px;")
+                    message = f"{post.message[:FIRST_WORDS]} ....." if len(post.message) > FIRST_WORDS else post.message
+                    th(message,                     style="text-align: left; padding-left: 10px; padding-right: 10px;")
                     th(post.numbers['reaction'],    style="text-align: center; padding-left: 10px; padding-right: 10px;")
                     th(post.numbers['comment'],     style="text-align: center; padding-left: 10px; padding-right: 10px;")
                     th(post.numbers['share'],       style="text-align: center; padding-left: 10px; padding-right: 10px;")
