@@ -1,9 +1,9 @@
 from typing import List
 
-from static.constants import SMTP_USER, SMTP_PASS, FIRST_WORDS
+from static.constants import SMTP_USER, SMTP_PASS
 
-import dominate
-from dominate.tags import *
+from bs4 import BeautifulSoup
+import markdown2
 
 import smtplib
 import mimetypes
@@ -17,29 +17,46 @@ def get_mailing_list() -> List[str]:
     return None
 
 def form_email_contents(posts):
-    doc = dominate.document(title="test")
+    """
+        html class names
+        - post_title
+        - post_article
+        - post_link
+        - post_numbers
+        - post_date
+    """
 
-    with doc:
-        with table():
-            with tr():
-                th('아티클')
-                th('리액션 수')
-                th('댓글 수')
-                th('공유 수')
-                th('마지막 업데이트 시간')
-                th('원게시물 링크')
+    with open('static/template.html') as f:
+        soup        = BeautifulSoup(f, 'html.parser')
 
-            for post in posts:
-                with tr():
-                    message = f"{post.message[:FIRST_WORDS]} ....." if len(post.message) > FIRST_WORDS else post.message
-                    th(message,                     style="text-align: left; padding-left: 10px; padding-right: 10px;")
-                    th(post.numbers['reaction'],    style="text-align: center; padding-left: 10px; padding-right: 10px;")
-                    th(post.numbers['comment'],     style="text-align: center; padding-left: 10px; padding-right: 10px;")
-                    th(post.numbers['share'],       style="text-align: center; padding-left: 10px; padding-right: 10px;")
-                    th(str(post.updated_time),      style="text-align: center; padding-left: 10px; padding-right: 10px;")
-                    th(a('링크', href=post.link),    style="text-align: center; padding-left: 10px; padding-right: 10px;")
+        titles      = soup.select(".post_title")
+        articles    = soup.select(".post_article")
+        links       = soup.select(".post_link")
+        numbers     = soup.select(".post_numbers")
+        dates       = soup.select(".post_date")
 
-    return doc
+        assert len(titles) == len(articles) == len(links) == len(numbers) == len(dates)
+
+        for index in range(len(titles)):
+            # new_article_div = soup.new_tag('div')
+            # new_article_div.string = BeautifulSoup(markdown2.markdown(posts[index].message), 'html.parser')
+            inner_article = markdown2.markdown(posts[index].message)
+            inner_article = inner_article.replace('<h3>', '<h6>').replace('</h3>', '</h6>')
+            inner_article = inner_article.replace('<h2>', '<h5>').replace('</h2>', '</h5>')
+            inner_article = inner_article.replace('<h1>', '<h4>').replace('</h1>', '</h4>')
+            articles[index].insert(0, BeautifulSoup(inner_article, 'html.parser'))
+
+            links[index]['href'] = posts[index].link
+            
+            dates[index].string = str(posts[index].updated_time)
+            
+            new_numbers_strong = soup.new_tag('strong')
+            new_numbers_strong.string = f"리액션: {posts[index].numbers['reaction']}, 댓글: {posts[index].numbers['comment']}, 공유: {posts[index].numbers['share']}" 
+            numbers[index].insert(0, new_numbers_strong)
+
+        return str(soup)
+
+    return None
 
 def sendmail(posts):
     if (mailinglist := get_mailing_list()) is not None:

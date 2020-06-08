@@ -20,9 +20,11 @@ class FacebookPost(object):
         post = FacebookPost()
 
         post.id             = message_json.get("id")
-        post.message        = message_json.get("message", "")
         post.link           = message_json.get("permalink_url")
         
+        post.message        = message_json.get("message", "")
+        if post.message == "": post.message = "내용이 비어있는 게시글 입니다 (공유/이미지만을 포함할 수 있습니다)"
+
         post.updated_time   = datetime.datetime.strptime(
             message_json.get("updated_time"), "%Y-%m-%dT%H:%M:%S%z"
         )
