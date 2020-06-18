@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import datetime
-from typing import Dict
+from typing import Dict, List
 
 class FacebookPost(object):
     """
@@ -12,6 +12,7 @@ class FacebookPost(object):
     message     : str
     numbers     : Dict[str, int] # reaction, comment, share
     link        : str
+    attachments : List[str]
     updated_time: datetime.datetime
 
     @classmethod
@@ -33,6 +34,14 @@ class FacebookPost(object):
         post.numbers["reaction"]    = message_json.get("reactions").get("summary").get("total_count")
         post.numbers["share"]       = message_json.get("shares").get("count") if "shares" in message_json else 0
         post.numbers["comment"]     = message_json.get("comments").get("summary").get("total_count")
+
+        post.attachments = []
+        if attachments := message_json.get("attachments"):
+            for attachment in attachments.get("data"):
+                if image := attachment.get("media").get("image"):
+                    post.attachments.append(image.get("src"))
+
+        print(post.attachments)
         return post
 
     def __repr__(self) -> str:
