@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import datetime
+import markdown2 
 from typing import Dict, List
+
+from static.constants import FIRST_WORDS
 
 class FacebookPost(object):
     """
@@ -13,6 +16,7 @@ class FacebookPost(object):
     numbers     : Dict[str, int] # reaction, comment, share
     link        : str
     attachments : List[str]
+    front_image : str
     updated_time: datetime.datetime
 
     @classmethod
@@ -25,10 +29,12 @@ class FacebookPost(object):
         
         post.message        = message_json.get("message", "")
         if post.message == "": post.message = "내용이 비어있는 게시글 입니다 (공유/이미지만을 포함할 수 있습니다)"
+        tmp_message         = markdown2.markdown(post.message[:FIRST_WORDS])
+        post.message        = f"{tmp_message}..." if len(post.message) > len(tmp_message) else tmp_message
 
         post.updated_time   = datetime.datetime.strptime(
             message_json.get("updated_time"), "%Y-%m-%dT%H:%M:%S%z"
-        )
+        ).strftime("%Y-%m-%d, %H:%M")
 
         post.numbers = {}
         post.numbers["reaction"]    = message_json.get("reactions").get("summary").get("total_count")
@@ -41,7 +47,8 @@ class FacebookPost(object):
                 if image := attachment.get("media").get("image"):
                     post.attachments.append(image.get("src"))
 
-        print(post.attachments)
+        post.front_image = post.attachments[0] if len(post.attachments) > 0 else "https://dummyimage.com/270x270/c4c4c4/fff.png&text=no+image"
+
         return post
 
     def __repr__(self) -> str:

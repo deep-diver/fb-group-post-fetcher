@@ -1,14 +1,13 @@
 from typing import List
 
-from static.constants import SMTP_USER, SMTP_PASS
-
-from bs4 import BeautifulSoup
-import markdown2
+from static.constants import *
 
 import smtplib
 import mimetypes
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from jinja2 import Environment, FileSystemLoader
+from premailer import transform
 
 def get_mailing_list() -> List[str]:
     with open('mailinglist.txt', 'r') as f:
@@ -17,47 +16,19 @@ def get_mailing_list() -> List[str]:
     return None
 
 def form_email_contents(posts):
-    """
-        html class names
-        - post_title
-        - post_article
-        - post_link
-        - post_numbers
-        - post_date
-    """
+    loader = FileSystemLoader('static/templates')
+    env = Environment(loader=loader)
+    template = env.get_template('cerberus-responsive.html')
 
-    with open('static/template.html') as f:
-        soup        = BeautifulSoup(f, 'html.parser')
+    output = template.render(head_logo=HEAD_LOGO,
+                             head_image=HEAD_IMAGE,
+                             head_section_article=HEAD_ARTICLE,
+                             head_section_button_title=HEAD_BUTTON_TITLE,
+                             bottom_section_article=BOTTOM_ARTICLE,
+                             posts=posts)
 
-        titles      = soup.select(".post_title")
-        articles    = soup.select(".post_article")
-        links       = soup.select(".post_link")
-        numbers     = soup.select(".post_numbers")
-        dates       = soup.select(".post_date")
-
-        assert len(titles) == len(articles) == len(links) == len(numbers) == len(dates)
-
-        for index in range(len(titles)):
-            # new_article_div = soup.new_tag('div')
-            # new_article_div.string = BeautifulSoup(markdown2.markdown(posts[index].message), 'html.parser')
-            inner_article = markdown2.markdown(posts[index].message)
-            inner_article = inner_article.replace('<h3>', '<h6>').replace('</h3>', '</h6>')
-            inner_article = inner_article.replace('<h2>', '<h5>').replace('</h2>', '</h5>')
-            inner_article = inner_article.replace('<h1>', '<h4>').replace('</h1>', '</h4>')
-            articles[index].insert(0, BeautifulSoup(inner_article, 'html.parser'))
-
-            links[index]['href'] = posts[index].link
-            
-            dates[index].string = str(posts[index].updated_time)
-            
-            new_numbers_strong = soup.new_tag('strong')
-            new_numbers_strong.string = f"리액션: {posts[index].numbers['reaction']}, 댓글: {posts[index].numbers['comment']}, 공유: {posts[index].numbers['share']}" 
-            numbers[index].insert(0, new_numbers_strong)
-
-        return str(soup)
-
-    return None
-
+    return transform(output)    
+    
 def sendmail(posts):
     if (mailinglist := get_mailing_list()) is not None:
         mailinglist = get_mailing_list()

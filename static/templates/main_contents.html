@@ -1,0 +1,26 @@
+<td style="padding: 10px; background-color: #ffffff;">
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+            {% for post in tmp_posts %}
+                <!-- Column : BEGIN -->
+                <th valign="top" width="100%" class="stack-column-center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="padding: 10px; text-align: center">
+                                <img src="{{ post.front_image }}" width="270px" height="270px" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                <p style="text-align: center; margin: 0;">게시 시점: {{ post.updated_time }} <a href={{ post.link }}>[ 링크 ]</a></p>
+                                <p style="text-align: center; padding-top: 15px; padding-bottom: 15px;">👏🏼{{ post.numbers["reaction"]}} &nbsp; 📤{{ post.numbers["share"]}} &nbsp; 💬{{ post.numbers["comment"]}}</p>
+                                <p style="margin: 0;">{{ post.message }}</p>
+                            </td>
+                        </tr>
+                    </table>
+                </th>
+                <!-- Column : END -->
+            {% endfor %}
+        </tr>
+    </table>
+</td>

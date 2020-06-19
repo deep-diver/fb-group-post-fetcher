@@ -6,6 +6,20 @@ from static.constants import *
 from lib.parsing import *
 from lib.email_utility import *
 
+def mock_html(posts):
+    loader = FileSystemLoader('static/templates')
+    env = Environment(loader=loader)
+    template = env.get_template('cerberus-responsive.html')
+
+    output = template.render(head_logo=HEAD_LOGO,
+                             head_image=HEAD_IMAGE,
+                             head_section_article=HEAD_ARTICLE,
+                             head_section_button_title=HEAD_BUTTON_TITLE,
+                             posts=posts)
+
+    with open('output.html', 'w') as f:
+        f.write(output)
+
 async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS):
     # 비동기 http 클라이언트 세션 생성
     async with aiohttp.ClientSession() as session:
@@ -15,6 +29,7 @@ async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS):
                                             post.numbers["reaction"]    * WEIGHTS_REACTIONS + 
                                             post.numbers["share"]       * WEIGHTS_SHARES + 
                                             post.numbers["comment"]     * WEIGHTS_COMMENTS, reverse=True)
+            # mock_html(sortedPost[:TOP_K])
             sendmail(sortedPost[:TOP_K])
 
 if __name__ == "__main__":
