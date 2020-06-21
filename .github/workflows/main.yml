@@ -2,8 +2,9 @@ name: Send a newsletter.
 
 on:
   schedule:
-    # every hour.
-    - cron: "*/5 * * * *"
+    # Run at midnight UTC on Monday
+    # Use https://crontab.guru/
+    - cron: "0 0 * * MON"
 
   repository_dispatch:
     types: manual-trigger
