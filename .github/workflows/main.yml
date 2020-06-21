@@ -3,7 +3,7 @@ name: Send a newsletter.
 on:
   schedule:
     # every hour.
-    - cron: "0 * * * *"
+    - cron: "*/1 * * * *"
 
   repository_dispatch:
     types: manual-trigger
@@ -27,7 +27,6 @@ jobs:
           SINCE=$(date -d "$date -7 days" +"%Y-%m-%d")
           SINCE="echo ${SINCE}"
           export $(cat .env | xargs) && pipenv run python main.py --since $SINCE --until $UNTIL
-
       - name: Encrypt .env => .env.gpg
         env:
           SYMMETRIC_KEY: ${{ secrets.GPG_KEY }}
