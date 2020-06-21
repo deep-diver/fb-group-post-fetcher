@@ -13,7 +13,7 @@ def parsing(raw_text) -> List:
     posts = []
 
     for tmp_post in tmp_posts:
-        post = parsing_indivisual_post(tmp_post)
-        posts.append(post)
+        if post := parsing_indivisual_post(tmp_post):
+            posts.append(post)
 
     return posts

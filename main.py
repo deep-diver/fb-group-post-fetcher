@@ -1,24 +1,26 @@
+import os
 import asyncio
 import aiohttp
 import argparse
 
 from static.constants import *
+from lib.token_refresh import *
 from lib.parsing import *
 from lib.email_utility import *
 
-def mock_html(posts):
-    loader = FileSystemLoader('static/templates')
-    env = Environment(loader=loader)
-    template = env.get_template('cerberus-responsive.html')
+# def mock_html(posts):
+#     loader = FileSystemLoader('static/templates')
+#     env = Environment(loader=loader)
+#     template = env.get_template('cerberus-responsive.html')
 
-    output = template.render(head_logo=HEAD_LOGO,
-                             head_image=HEAD_IMAGE,
-                             head_section_article=HEAD_ARTICLE,
-                             head_section_button_title=HEAD_BUTTON_TITLE,
-                             posts=posts)
+#     output = template.render(head_logo=HEAD_LOGO,
+#                              head_image=HEAD_IMAGE,
+#                              head_section_article=HEAD_ARTICLE,
+#                              head_section_button_title=HEAD_BUTTON_TITLE,
+#                              posts=posts)
 
-    with open('output.html', 'w') as f:
-        f.write(output)
+#     with open('output.html', 'w') as f:
+#         f.write(output)
 
 async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS):
     # 비동기 http 클라이언트 세션 생성
@@ -42,6 +44,9 @@ if __name__ == "__main__":
     parser.add_argument('--weight-comments', required=False, type=float, default=1.0, help='from 0 to 1')
     args = parser.parse_args()
 
-    URL = f"{BASE_URL}&limit={args.limit}&since={args.since}&until={args.until}&{TAIL_URL}"
+    access_token = update_token()
+    load_dotenv()
+
+    URL = f"{BASE_URL}&limit={args.limit}&since={args.since}&until={args.until}&{TAIL_URL}&access_token={access_token}"
     asyncio.run(fetch_posts(URL, args.weight_reactions, args.weight_shares, args.weight_comments))
 

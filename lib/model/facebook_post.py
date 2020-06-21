@@ -19,18 +19,43 @@ class FacebookPost(object):
     front_image : str
     updated_time: datetime.datetime
 
+    def __replace_h_size(self, message):
+        return message.replace("h3", "h5") \
+                      .replace("h2", "h4") \
+                      .replace("h1", "h3")
+
+    def __set_message(self, message_json) -> str:
+        result = message_json.get("message", "")
+        
+        if result.strip() == "":
+            print(message_json)
+            if attachments := message_json.get("attatchments"):
+                for attachment in attatchments.get("data"):
+                    description = attachment.get("description", "")
+                    if description != "": 
+                        result = description
+                        break
+        
+        if result == "":
+            return None
+
+        result = f"{result} ..... " if len(result) > FIRST_WORDS else result
+        result = markdown2.markdown(result)
+        result = self.__replace_h_size(result)
+
+        return result
+
     @classmethod
     def from_json(cls, message_json: dict) -> FacebookPost:
-        print(message_json)
         post = FacebookPost()
 
         post.id             = message_json.get("id")
         post.link           = message_json.get("permalink_url")
         
-        post.message        = message_json.get("message", "")
-        if post.message == "": post.message = "내용이 비어있는 게시글 입니다 (공유/이미지만을 포함할 수 있습니다)"
-        tmp_message         = markdown2.markdown(post.message[:FIRST_WORDS])
-        post.message        = f"{tmp_message}..." if len(post.message) > len(tmp_message) else tmp_message
+        if message := post.__set_message(message_json):
+            post.message = message
+        else:
+            return None 
 
         post.updated_time   = datetime.datetime.strptime(
             message_json.get("updated_time"), "%Y-%m-%dT%H:%M:%S%z"
