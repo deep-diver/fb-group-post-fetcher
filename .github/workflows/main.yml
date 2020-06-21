@@ -20,7 +20,7 @@ jobs:
         env:
           SYMMETRIC_KEY: ${{ secrets.GPG_KEY }}
         run: |
-          echo $SYMMETRIC_KEY
+          gpg2 --version
           gpg2 --quiet --batch --yes --decrypt --passphrase="$SYMMETRIC_KEY" --output=.env .env.gpg
 
       - name: Run the process
