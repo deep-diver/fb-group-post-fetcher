@@ -15,9 +15,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: olafurpg/setup-gpg@v2  
 
       - name: Decrypt .env.gpg => .env
-        uses: olafurpg/setup-gpg@v2  
         env:
           SYMMETRIC_KEY: ${{ secrets.GPG_KEY }}
         run: gpg --quiet --batch --yes --decrypt --passphrase="$SYMMETRIC_KEY" --output=.env .env.gpg
