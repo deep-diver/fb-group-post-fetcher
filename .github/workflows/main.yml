@@ -3,7 +3,7 @@ name: Send a newsletter.
 on:
   schedule:
     # every hour.
-    - cron: "*/5 * * * *"
+    - cron: "*/1 * * * *"
 
   repository_dispatch:
     types: manual-trigger
@@ -19,7 +19,7 @@ jobs:
       - name: Decrypt .env.gpg => .env
         env:
           SYMMETRIC_KEY: ${{ secrets.GPG_KEY }}
-        run: gpg --quiet --batch --yes --decrypt --passphrase="$SYMMETRIC_KEY" --output=.env .env.gpg
+        run: gpg2 --quiet --batch --yes --decrypt --passphrase="$SYMMETRIC_KEY" --output=.env .env.gpg
 
       - name: Run the process
         run: |
@@ -31,7 +31,7 @@ jobs:
       - name: Encrypt .env => .env.gpg
         env:
           SYMMETRIC_KEY: ${{ secrets.GPG_KEY }}
-        run: echo "$SYMMETRIC_KEY" | gpg --symmetric --batch --passphrase-fd 0 .env
+        run: echo "$SYMMETRIC_KEY" | gpg2 --symmetric --batch --passphrase-fd 0 .env
 
       - name: Push .env.gpg
         run: |
