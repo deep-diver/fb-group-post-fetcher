@@ -22,7 +22,7 @@ from lib.email_utility import *
 #     with open('output.html', 'w') as f:
 #         f.write(output)
 
-async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS):
+async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS, SINCE, UNTIL):
     # 비동기 http 클라이언트 세션 생성
     async with aiohttp.ClientSession() as session:
         async with session.get(URL) as res:
@@ -32,7 +32,7 @@ async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS):
                                             post.numbers["share"]       * WEIGHTS_SHARES + 
                                             post.numbers["comment"]     * WEIGHTS_COMMENTS, reverse=True)
             # mock_html(sortedPost[:TOP_K])
-            sendmail(sortedPost[:TOP_K])
+            sendmail(sortedPost[:TOP_K], SINCE, UNTIL)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Please specify the range of dates and the number of posts to be collected')
@@ -48,5 +48,11 @@ if __name__ == "__main__":
     load_dotenv()
 
     URL = f"{BASE_URL}&limit={args.limit}&since={args.since}&until={args.until}&{TAIL_URL}&access_token={access_token}"
-    asyncio.run(fetch_posts(URL, args.weight_reactions, args.weight_shares, args.weight_comments))
+
+    asyncio.run(fetch_posts(URL, 
+                            args.weight_reactions, 
+                            args.weight_shares, 
+                            args.weight_comments,
+                            args.since,
+                            args.until))
 

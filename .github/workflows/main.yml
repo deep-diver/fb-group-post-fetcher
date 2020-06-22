@@ -2,8 +2,8 @@ name: Send a newsletter.
 
 on:
   schedule:
-    # every hour.
-    - cron: "0 13 * * *"
+    # every 4am(UTC) which is 1pm in Korea
+    - cron: "0 4 * * *"
 
   repository_dispatch:
     types: manual-trigger
@@ -34,9 +34,9 @@ jobs:
         id: current_date
         run: echo "::set-output name=UNTIL::$(date +'%Y-%m-%d')"
       
-      - name: Get past 7 date
+      - name: Get past -n date
         id: past_date
-        run: echo "::set-output name=SINCE::$(date --date='7 days ago' +%Y-%m-%d)"
+        run: echo "::set-output name=SINCE::$(date --date='1 days ago' +%Y-%m-%d)"
 
       - name: Run the process
         run: 

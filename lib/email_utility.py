@@ -29,13 +29,13 @@ def form_email_contents(posts):
 
     return transform(output)    
     
-def sendmail(posts):
+def sendmail(posts, since, until):
     if (mailinglist := get_mailing_list()) is not None:
         mailinglist = get_mailing_list()
 
         message = MIMEMultipart('alternative')
 
-        message['Subject'] = '<리포팅>TF-KR 지난 7일간의 Top 포스팅 목록'
+        message['Subject'] = f"TF-KR TOP 10 포스팅 [{since} ~ {until}]"
         message['From'] = SMTP_USER
         message['To'] = ", ".join(mailinglist)
 
