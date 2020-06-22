@@ -52,5 +52,8 @@ jobs:
 
       - name: Push .env.gpg
         run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'deep.diver.csp@gmail.com'
+                    
           git commit -am 'Updating .env.gpg'
           git push
