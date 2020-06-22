@@ -3,7 +3,7 @@ name: Send a newsletter.
 on:
   schedule:
     # every hour.
-    - cron: "*/5 * * * *"
+    - cron: "0 13 * * *"
 
   repository_dispatch:
     types: manual-trigger
