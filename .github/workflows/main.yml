@@ -32,11 +32,11 @@ jobs:
 
       - name: Get current date
         id: current_date
-        run: echo "::set-output UNTIL=date::$(date +'%Y-%m-%d')"
+        run: echo "::set-output name=UNTIL::$(date +'%Y-%m-%d')"
       
       - name: Get past 7 date
         id: past_date
-        run: echo "::set-output SINCE=$(date -d \"$date -7 days\" +"%Y-%m-%d")"
+        run: echo "::set-output name=SINCE::$(date -d \"$date -7 days\" +"%Y-%m-%d")"
 
       - name: Run the process
         run: 
