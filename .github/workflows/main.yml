@@ -27,6 +27,9 @@ jobs:
           SYMMETRIC_KEY: ${{ secrets.GPG_KEY }}
         run: gpg --quiet --batch --yes --decrypt --passphrase="$SYMMETRIC_KEY" --output=.env .env.gpg
 
+      - name: Install dependencies
+        run: pipenv install
+
       - name: Run the process
         run: |
           UNTIL=$(echo date +%Y-%m-%d)
