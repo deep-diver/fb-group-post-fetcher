@@ -1,29 +1,48 @@
 name: fb-scrapper
 channels:
-- defaults
+  - defaults
 dependencies:
-- aiohttp=3.6.1=py38h1de35cc_0
-- async-timeout=3.0.1=py38_0
-- attrs=19.3.0=py_0
-- ca-certificates=2020.1.1=0
-- certifi=2020.4.5.1=py38_0
-- chardet=3.0.4=py38_1003
-- idna=2.9=py_1
-- libcxx=10.0.0=1
-- libedit=3.1.20181209=hb402a30_0
-- libffi=3.3=h0a44026_1
-- multidict=4.7.3=py38h1de35cc_0
-- ncurses=6.2=h0a44026_1
-- openssl=1.1.1g=h1de35cc_0
-- pip=20.0.2=py38_3
-- python=3.8.3=h26836e1_1
-- readline=8.0=h1de35cc_0
-- setuptools=47.1.1=py38_0
-- sqlite=3.31.1=h5c1f38d_1
-- tk=8.6.8=ha441bb4_0
-- wheel=0.34.2=py38_0
-- xz=5.2.5=h1de35cc_0
-- yarl=1.4.2=py38h1de35cc_0
-- zlib=1.2.11=h1de35cc_3
-prefix: /Users/chansungpark/anaconda/envs/fb-scrapper
+  - ca-certificates=2020.1.1=0
+  - certifi=2020.4.5.2=py38_0
+  - libcxx=10.0.0=1
+  - libedit=3.1.20191231=haf1e3a3_0
+  - libffi=3.3=h0a44026_1
+  - ncurses=6.2=h0a44026_1
+  - openssl=1.1.1g=h1de35cc_0
+  - pip=20.1.1=py38_1
+  - python=3.8.3=h26836e1_1
+  - readline=8.0=h1de35cc_0
+  - setuptools=47.3.0=py38_0
+  - sqlite=3.32.2=hffcf06c_0
+  - tk=8.6.10=hb0a8c7a_0
+  - wheel=0.34.2=py38_0
+  - xz=5.2.5=h1de35cc_0
+  - zlib=1.2.11=h1de35cc_3
+  - pip:
+    - aiohttp==3.6.2
+    - appdirs==1.4.4
+    - async-timeout==3.0.1
+    - attrs==19.3.0
+    - cachetools==4.1.0
+    - chardet==3.0.4
+    - cssselect==1.1.0
+    - cssutils==1.0.2
+    - distlib==0.3.0
+    - filelock==3.0.12
+    - idna==2.9
+    - jinja2==2.11.2
+    - lxml==4.5.1
+    - markdown2==2.3.9
+    - markupsafe==1.1.1
+    - multidict==4.7.6
+    - pipenv==2020.6.2
+    - premailer==3.7.0
+    - python-dotenv==0.13.0
+    - requests==2.24.0
+    - six==1.15.0
+    - urllib3==1.25.9
+    - virtualenv==20.0.23
+    - virtualenv-clone==0.5.4
+    - yarl==1.4.2
+prefix: /Users/chansung/opt/miniconda3/envs/fb-scrapper
 
