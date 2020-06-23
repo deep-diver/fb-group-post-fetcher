@@ -39,7 +39,7 @@ class FacebookPost(object):
         if result == "":
             return None
 
-        result = f"{result} ..... " if len(result) > FIRST_WORDS else result
+        result = f"{result[:FIRST_WORDS]} ..... " if len(result) > FIRST_WORDS else result
         result = markdown2.markdown(result)
         result = self.__replace_h_size(result)
 
