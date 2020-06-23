@@ -19,7 +19,7 @@ class FacebookPost(object):
     front_image : str
     updated_time: datetime.datetime
 
-    def __replace_h_size(self, message):
+    def __replace_h_size(self, message) -> str:
         return message.replace("h3", "h5") \
                       .replace("h2", "h4") \
                       .replace("h1", "h3")
@@ -49,17 +49,17 @@ class FacebookPost(object):
     def from_json(cls, message_json: dict) -> FacebookPost:
         post = FacebookPost()
 
-        post.id             = message_json.get("id")
-        post.link           = message_json.get("permalink_url")
-        
+        post.updated_time   = datetime.datetime.strptime(
+            message_json.get("created_time"), "%Y-%m-%dT%H:%M:%S%z"
+        ).strftime("%Y-%m-%d, %H:%M")
+
         if message := post.__set_message(message_json):
             post.message = message
         else:
             return None 
 
-        post.updated_time   = datetime.datetime.strptime(
-            message_json.get("updated_time"), "%Y-%m-%dT%H:%M:%S%z"
-        ).strftime("%Y-%m-%d, %H:%M")
+        post.id             = message_json.get("id")
+        post.link           = message_json.get("permalink_url")
 
         post.numbers = {}
         post.numbers["reaction"]    = message_json.get("reactions").get("summary").get("total_count")

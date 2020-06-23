@@ -5,7 +5,7 @@ load_dotenv()
 
 GROUP_ID    = os.getenv("FB_GROUP_ID")
 BASE_URL    = f"https://graph.facebook.com/v7.0/{GROUP_ID}/feed?"
-TAIL_URL    = f"fields=message%2Creactions.summary(total_count)%2Ccomments.summary(total_count)%2Cpermalink_url%2Cshares%2Cupdated_time%2Cattachments{{media}}"
+TAIL_URL    = f"fields=message%2Creactions.summary(total_count)%2Ccomments.summary(total_count)%2Cpermalink_url%2Cshares%2Cupdated_time%2Cattachments{{media}}%2Ccreated_time"
 SMTP_USER   = os.getenv("SMTP_USER")
 SMTP_PASS   = os.getenv("SMTP_PASS")
 
