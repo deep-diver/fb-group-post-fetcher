@@ -29,8 +29,8 @@ class FacebookPost(object):
         
         if result.strip() == "":
             print(message_json)
-            if attachments := message_json.get("attatchments"):
-                for attachment in attatchments.get("data"):
+            if attachments := message_json.get("attachments"):
+                for attachment in attachments.get("data"):
                     description = attachment.get("description", "")
                     if description != "": 
                         result = description
