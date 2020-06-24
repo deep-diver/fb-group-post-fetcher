@@ -1,5 +1,7 @@
 # Facebook Group Post Fetcher + Emailing
 
+<img src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/process.png?raw=true" width="550px"/>
+
 This repository contains simple source codes to scrap posts from a certain facebook group. The following information is included.
 
 - id
