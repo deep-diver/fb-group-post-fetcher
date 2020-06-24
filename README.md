@@ -5,7 +5,7 @@ This repository contains simple source codes to scrap posts from a certain faceb
 - id
 - message
 - link
-- updated time
+- created time
 - number of reactions
 - number of comments
 - number of shares
@@ -67,6 +67,15 @@ FB_GROUP_ID=XXX
 FB_ACCESS_TOKEN=XXX
 ```
 
+Initial token is issued for temporary purpose. If you want to have long lived access token, you need to exchange the temporary token with it. You can do that via accessing an [API](https://developers.facebook.com/docs/facebook-login/access-tokens/refreshing/). This API requires your APP ID and APP Secret, so you should write these information into the `.env` file.
+
+```
+APP_ID=XXX
+APP_SECRET=XXX
+```
+
+For the first time you run the application, you will need a temporary access token. After that, whenever you run the application again, the current access token will be refreshed with a new long lived one. Make sure you encrypt the `.env` so only you can access the `APP_ID` and `APP_SECRET`.
+
 ### SMTP Specific Information
 ```
 # USER is the same as your email address
@@ -92,8 +101,12 @@ Message for a post could be too long. This variable specify the number of words 
 
 ### `.env` example
 ```
-FB_GROUP_ID=X
+APP_ID=XXX
+APP_SECRET=XXX
+
+FB_GROUP_ID=XXX
 FB_ACCESS_TOKEN=XXX
+
 SMTP_USER=XXX
 SMTP_PASS=XXX
 
