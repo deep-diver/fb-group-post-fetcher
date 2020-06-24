@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-import datetime
+from datetime import datetime, timezone
+import pytz
 import markdown2 
 from typing import Dict, List
 
@@ -17,14 +18,16 @@ class FacebookPost(object):
     link        : str
     attachments : List[str]
     front_image : str
-    updated_time: datetime.datetime
+    created_time: datetime
 
-    def __replace_h_size(self, message) -> str:
+    @staticmethod
+    def replace_h_size(message) -> str:
         return message.replace("h3", "h5") \
                       .replace("h2", "h4") \
                       .replace("h1", "h3")
 
-    def __set_message(self, message_json) -> str:
+    @staticmethod
+    def convert_message(message_json) -> str:
         result = message_json.get("message", "")
         
         if result.strip() == "":
@@ -41,19 +44,27 @@ class FacebookPost(object):
 
         result = f"{result[:FIRST_WORDS]} ..... " if len(result) > FIRST_WORDS else result
         result = markdown2.markdown(result)
-        result = self.__replace_h_size(result)
+        result = FacebookPost.replace_h_size(result)
 
         return result
+
+    @staticmethod
+    def get_time(message_json, tz) -> datetime:
+        utc_time = datetime.strptime(message_json.get("created_time"), "%Y-%m-%dT%H:%M:%S%z")
+        tz_converted_time = FacebookPost.convert_timezone_from_utc_to(utc_time, tz)
+        return tz_converted_time.strftime("%Y-%m-%d, %H:%M")
+
+    @staticmethod
+    def convert_timezone_from_utc_to(utc_time, tz) -> str:
+        return utc_time.replace(tzinfo=timezone.utc).astimezone(tz=pytz.timezone(tz))
 
     @classmethod
     def from_json(cls, message_json: dict) -> FacebookPost:
         post = FacebookPost()
 
-        post.updated_time   = datetime.datetime.strptime(
-            message_json.get("created_time"), "%Y-%m-%dT%H:%M:%S%z"
-        ).strftime("%Y-%m-%d, %H:%M")
+        post.created_time   = FacebookPost.get_time(message_json, "Asia/Seoul")
 
-        if message := post.__set_message(message_json):
+        if message := FacebookPost.convert_message(message_json):
             post.message = message
         else:
             return None 
@@ -77,4 +88,4 @@ class FacebookPost(object):
         return post
 
     def __repr__(self) -> str:
-        return f"FB_POST(id={self.id}, message={self.message}, link={self.link}, updated_time={self.updated_time}, numbers={self.numbers})"
+        return f"FB_POST(id={self.id}, message={self.message}, link={self.link}, created_time={self.created_time}, numbers={self.numbers})"

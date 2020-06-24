@@ -16,7 +16,8 @@ def parsing(raw_text, since, until) -> List:
     for tmp_post in tmp_posts:
         since = datetime.datetime.strptime(since, "%Y-%m-%d").strftime("%Y-%m-%d")
         until = datetime.datetime.strptime(until, "%Y-%m-%d").strftime("%Y-%m-%d")
-        created_time = datetime.datetime.strptime(tmp_post.get("created_time"), "%Y-%m-%dT%H:%M:%S%z").strftime("%Y-%m-%d")
+        created_time = FacebookPost.get_time(tmp_post, "Asia/Seoul")
+        # created_time = datetime.datetime.strptime(tmp_post.get("created_time"), "%Y-%m-%dT%H:%M:%S%z").strftime("%Y-%m-%d")
 
         if since <= created_time <= until:
             if post := parsing_indivisual_post(tmp_post):
