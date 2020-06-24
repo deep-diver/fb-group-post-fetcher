@@ -6,6 +6,7 @@ verify_ssl = false
 [dev-packages]
 
 [packages]
+pytz = "*"
 aiohttp = "*"
 python-dotenv = "*"
 markdown2 = "*"
