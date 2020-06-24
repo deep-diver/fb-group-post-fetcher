@@ -1,26 +1,117 @@
-<td style="padding: 10px; background-color: #ffffff;">
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-        <tr>
-            {% for post in tmp_posts %}
-                <!-- Column : BEGIN -->
-                <th valign="top" width="100%" class="stack-column-center">
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+    <td align="center" class="wrapper" style="max-width:800px!important;">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+          <tr>
+            <td>
+              <!-- LEFT COLUMN -->
+              <table align="left" border="0" cellpadding="0" cellspacing="0" class="stack" width="390px" bgcolor="#ffffff">
+                <tr>
+                  <td style="padding: 0px 0px 18px 0px;">
+                    <table border="0" cellpadding="0" cellspacing="0" class="card-1" style="border-bottom: 2px solid #d4d4d4;">
+                      <tbody>
                         <tr>
-                            <td style="padding: 10px; text-align: center">
-                                <img src="{{ post.front_image }}" width="270px" height="270px" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;">
-                            </td>
+                          <td class="ripplelink" align="left" width="800">
+                            <img src="{{ tmp_posts[0].front_image }}" width="800" style="font-weight: bold; border-radius: 3px 3px 0px 0px; display: block; border: 0px; width: 100%; max-width: 800px;" />
+                          </td>
                         </tr>
                         <tr>
-                            <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
-                                <p style="text-align: center; margin: 0;">게시 시점: {{ post.created_time }} <a href={{ post.link }}>[ 링크 ]</a></p>
-                                <p style="text-align: center; padding-top: 15px; padding-bottom: 15px;">👏🏼{{ post.numbers["reaction"]}} &nbsp; 📤{{ post.numbers["share"]}} &nbsp; 💬{{ post.numbers["comment"]}}</p>
-                                <p style="margin: 0;">{{ post.message }}</p>
+                            <td bgcolor="#ffffff" class="td-padding" align="left" style="text-align: center; font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 15px; line-height: 30px; padding-top: 18px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 13px;">
+                                게시 시점: {{ tmp_posts[0].created_time }} 
                             </td>
+                        </tr>                          
+                        <tr>
+                          <td bgcolor="#ffffff" class="td-padding" align="left" style="text-align: center; font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 22px; line-height: 30px; padding-top: 18px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 13px;">
+                            👏🏼{{ tmp_posts[0].numbers["reaction"]}} &nbsp; 📤{{ tmp_posts[0].numbers["share"]}} &nbsp; 💬{{ tmp_posts[0].numbers["comment"]}}
+                          </td>
                         </tr>
+                        <tr>
+                          <td bgcolor="#ffffff" class="td-padding" align="left" style="font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 16px; line-height: 24px; padding-top: 18px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 18px;">
+                            {{ tmp_posts[0].message }}
+                          </td>
+                        </tr>
+                        <!-- END BODY COPY -->
+                        <!-- BUTTON -->
+                        <tr>
+                          <td bgcolor="#ffffff" align="left" style="padding: 18px 18px 18px 18px; mso-alt-padding: 18px 18px 18px 18px!important;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td>
+                                  <table border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                      <td align="left" style="border-radius: 3px;" bgcolor="#fc3f1e">
+                                        <a class="button raised" href="{{ tmp_posts[0].link }}" target="_blank" style="font-size: 14px; line-height: 14px; font-weight: 500; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 3px; padding: 10px 25px; border: 1px solid #fc3f1e; display: inline-block;">게시글로 이동</a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <!-- END BUTTON -->
+                      </tbody>
                     </table>
-                </th>
-                <!-- Column : END -->
-            {% endfor %}
-        </tr>
-    </table>
-</td>
+                  </td>
+                </tr>
+              </table>
+              <!-- END LEFT -->
+
+              <!-- RIGHT COLUMN -->
+              <table align="right" border="0" cellpadding="0" cellspacing="0" class="stack" width="390px" bgcolor="#ffffff">
+                <tr>
+                  <td style="padding: 0px 0px 18px 0px;">
+                    <table border="0" cellpadding="0" cellspacing="0" class="card-1" style="border-bottom: 2px solid #d4d4d4;">
+                      <tbody>
+                        <tr>
+                          <td class="ripplelink" align="left" width="800">
+                            <img src="{{ tmp_posts[1].front_image }}" width="800" style="border-radius: 3px 3px 0px 0px; display: block; border: 0px; width: 100%; max-width: 800px;" />
+                          </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#ffffff" class="td-padding" align="left" style="text-align: center; font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 15px; line-height: 30px; padding-top: 18px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 13px;">
+                                게시 시점: {{ tmp_posts[1].created_time }} 
+                            </td>
+                        </tr>                                    
+                        <tr>
+                          <td bgcolor="#ffffff" class="td-padding" align="left" style="text-align: center; font-weight: bold; font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 22px; line-height: 30px; padding-top: 18px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 13px;">
+                            👏🏼{{ tmp_posts[1].numbers["reaction"]}} &nbsp; 📤{{ tmp_posts[1].numbers["share"]}} &nbsp; 💬{{ tmp_posts[1].numbers["comment"]}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td bgcolor="#ffffff" class="td-padding" align="left" style="font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 16px; line-height: 24px; padding-top: 18px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 18px;">
+                            {{ tmp_posts[1].message }}
+                          </td>
+                        </tr>
+                        <!-- END BODY COPY -->
+                        <!-- BUTTON -->
+                        <tr>
+                          <td bgcolor="#ffffff" align="left" style="padding: 18px 18px 18px 18px; mso-alt-padding: 18px 18px 18px 18px!important;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td>
+                                  <table border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                      <td align="left" style="border-radius: 3px;" bgcolor="#25e47a">
+                                        <a class="button raised" href="{{ tmp_posts[1].link }}" target="_blank" style="font-size: 14px; line-height: 14px; font-weight: 500; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 3px; padding: 10px 25px; border: 1px solid #25e47a; display: inline-block;">게시글로 이동</a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <!-- END BUTTON -->
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <!-- END RIGHT -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>

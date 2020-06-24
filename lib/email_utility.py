@@ -18,13 +18,11 @@ def get_mailing_list() -> List[str]:
 def form_email_contents(posts):
     loader = FileSystemLoader('static/templates')
     env = Environment(loader=loader)
-    template = env.get_template('cerberus-responsive.html')
+    template = env.get_template('template.html')
 
-    output = template.render(head_logo=HEAD_LOGO,
-                             head_image=HEAD_IMAGE,
+    output = template.render(head_image=HEAD_IMAGE,
                              head_section_article=HEAD_ARTICLE,
                              head_section_button_title=HEAD_BUTTON_TITLE,
-                             bottom_section_article=BOTTOM_ARTICLE,
                              posts=posts)
 
     return transform(output)    
