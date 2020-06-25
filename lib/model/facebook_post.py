@@ -83,7 +83,7 @@ class FacebookPost(object):
                 if image := attachment.get("media").get("image"):
                     post.attachments.append(image.get("src"))
 
-        post.front_image = post.attachments[0] if len(post.attachments) > 0 else "https://dummyimage.com/270x270/c4c4c4/fff.png&text=no+image"
+        post.front_image = post.attachments[0] if len(post.attachments) > 0 else "https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/no-image.png?raw=true"
 
         return post
 
