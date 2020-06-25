@@ -19,6 +19,10 @@ Also the scrapped posts are sorted via the following formula. You can change the
   (# of reactions * WEIGHT_REACTIONS) + (# of shares * WEIGHT_SHARES) + (# of comments * WEIGHT_COMMENTS)
 ```
 
+## Look
+
+<img src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/preview.png?raw=true" height="800px"/>
+
 ## Usage
 
 ### CLI
