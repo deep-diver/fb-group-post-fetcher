@@ -12,7 +12,7 @@
                       <tbody>
                         <tr>
                           <td class="ripplelink" align="left" width="800">
-                            <img src="{{ tmp_posts[0].front_image }}" width="800" style="font-weight: bold; border-radius: 3px 3px 0px 0px; display: block; border: 0px; width: 100%; max-width: 800px;" />
+                            <img src="{{ tmp_posts[0].front_image }}" style="font-weight: bold; border-radius: 3px 3px 0px 0px; display: block; border: 0px; width: 380px; max-width: 800px; height: 230px;" />
                           </td>
                         </tr>
                         <tr>
@@ -22,7 +22,7 @@
                         </tr>                          
                         <tr>
                           <td bgcolor="#ffffff" class="td-padding" align="left" style="text-align: center; font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 22px; line-height: 30px; padding-top: 18px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 13px;">
-                            👏🏼{{ tmp_posts[0].numbers["reaction"]}} &nbsp; 📤{{ tmp_posts[0].numbers["share"]}} &nbsp; 💬{{ tmp_posts[0].numbers["comment"]}}
+                            <img style="display: inline-block; vertical-align: bottom; max-width: 35px;" src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/reaction_icon.png?raw=true" width="35px"/> {{ tmp_posts[0].numbers["reaction"]}} <img style="display: inline-block; vertical-align: bottom; max-width: 35px;" src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/share_icon.png?raw=true" width="35px"/> {{ tmp_posts[0].numbers["share"]}} <img style="display: inline-block; vertical-align: bottom; max-width: 35px;" src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/comment_icon.png?raw=true" width="35px"/> {{ tmp_posts[0].numbers["comment"]}}
                           </td>
                         </tr>
                         <tr>
@@ -37,10 +37,10 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                               <tr>
                                 <td>
-                                  <table border="0" cellspacing="0" cellpadding="0">
+                                  <table border="0" cellspacing="0" cellpadding="0" style="width: 100%; max-width: 100%">
                                     <tr>
-                                      <td align="left" style="border-radius: 3px;" bgcolor="#fc3f1e">
-                                        <a class="button raised" href="{{ tmp_posts[0].link }}" target="_blank" style="font-size: 14px; line-height: 14px; font-weight: 500; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 3px; padding: 10px 25px; border: 1px solid #fc3f1e; display: inline-block;">게시글로 이동</a>
+                                      <td align="left" style="text-align: center; border-radius: 3px; width: 100%; max-width: 100%" bgcolor="orange">
+                                        <a class="button raised" href="{{ tmp_posts[0].link }}" target="_blank" style="font-size: 14px; line-height: 14px; font-weight: 500; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 3px; padding: 10px 25px; border: 1px solid #ffaa54; display: inline-block;">게시글로 이동</a>
                                       </td>
                                     </tr>
                                   </table>
@@ -65,7 +65,7 @@
                       <tbody>
                         <tr>
                           <td class="ripplelink" align="left" width="800">
-                            <img src="{{ tmp_posts[1].front_image }}" width="800" style="border-radius: 3px 3px 0px 0px; display: block; border: 0px; width: 100%; max-width: 800px;" />
+                            <img src="{{ tmp_posts[1].front_image }}" style="border-radius: 3px 3px 0px 0px; display: block; border: 0px; width: 380px; max-width: 800px; height: 230px;" />
                           </td>
                         </tr>
                         <tr>
@@ -75,7 +75,7 @@
                         </tr>                                    
                         <tr>
                           <td bgcolor="#ffffff" class="td-padding" align="left" style="text-align: center; font-weight: bold; font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 22px; line-height: 30px; padding-top: 18px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 13px;">
-                            👏🏼{{ tmp_posts[1].numbers["reaction"]}} &nbsp; 📤{{ tmp_posts[1].numbers["share"]}} &nbsp; 💬{{ tmp_posts[1].numbers["comment"]}}
+                            <img style="display: inline-block; vertical-align: bottom; max-width: 35px;" src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/reaction_icon.png?raw=true" width="35px"/> {{ tmp_posts[1].numbers["reaction"]}} <img style="display: inline-block; vertical-align: bottom; max-width: 35px;" src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/share_icon.png?raw=true" width="35px"/> {{ tmp_posts[1].numbers["share"]}} <img style="display: inline-block; vertical-align: bottom; max-width: 35px;" src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/comment_icon.png?raw=true" width="35px"/> {{ tmp_posts[1].numbers["comment"]}}
                           </td>
                         </tr>
                         <tr>
@@ -90,10 +90,10 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                               <tr>
                                 <td>
-                                  <table border="0" cellspacing="0" cellpadding="0">
+                                  <table style="width: 100%; max-width: 100%;" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
-                                      <td align="left" style="border-radius: 3px;" bgcolor="#25e47a">
-                                        <a class="button raised" href="{{ tmp_posts[1].link }}" target="_blank" style="font-size: 14px; line-height: 14px; font-weight: 500; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 3px; padding: 10px 25px; border: 1px solid #25e47a; display: inline-block;">게시글로 이동</a>
+                                      <td align="left" style="text-align: center; border-radius: 3px; width: 100%; max-width: 100%" bgcolor="orange">
+                                        <a class="button raised" href="{{ tmp_posts[1].link }}" target="_blank" style="font-size: 14px; line-height: 14px; font-weight: 500; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 3px; padding: 10px 25px; border: 1px solid #ffaa54; display: inline-block;">게시글로 이동</a>
                                       </td>
                                     </tr>
                                   </table>
