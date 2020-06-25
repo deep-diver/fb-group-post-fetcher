@@ -22,7 +22,6 @@ def form_email_contents(posts):
 
     output = template.render(head_image=HEAD_IMAGE,
                              head_section_article=HEAD_ARTICLE,
-                             head_section_button_title=HEAD_BUTTON_TITLE,
                              posts=posts)
 
     return transform(output)    

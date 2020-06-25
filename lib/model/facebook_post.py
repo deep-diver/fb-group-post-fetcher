@@ -52,7 +52,7 @@ class FacebookPost(object):
     def get_time(message_json, tz) -> datetime:
         utc_time = datetime.strptime(message_json.get("created_time"), "%Y-%m-%dT%H:%M:%S%z")
         tz_converted_time = FacebookPost.convert_timezone_from_utc_to(utc_time, tz)
-        return tz_converted_time.strftime("%Y-%m-%d, %H:%M")
+        return tz_converted_time.strftime("%Y-%m-%d %H:%M")
 
     @staticmethod
     def convert_timezone_from_utc_to(utc_time, tz) -> str:
