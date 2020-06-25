@@ -1,3 +1,5 @@
+![Send a newsletter.](https://github.com/deep-diver/fb-group-post-fetcher/workflows/Send%20a%20newsletter./badge.svg?branch=master)
+
 # Facebook Group Post Fetcher + Emailing
 
 <img src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/process.png?raw=true" width="550px"/>
