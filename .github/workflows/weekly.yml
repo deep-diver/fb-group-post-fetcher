@@ -3,7 +3,7 @@ name: Send a newsletter every 6am on Friday.
 on:
   schedule:
     # every 9am(UTC) which is 5pm in Korea on Friday
-    - cron: "0 9 * * FRI"
+    - cron: "0 8 * * FRI"
 
   repository_dispatch:
     types: manual-trigger
