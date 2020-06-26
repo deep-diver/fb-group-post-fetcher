@@ -24,7 +24,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Please specify the range of dates and the number of posts to be collected')
     parser.add_argument('--since', required=True, type=str, help='dates in YYYY-MM-DD') 
     parser.add_argument('--until', required=True, type=str, help='dates in YYYY-MM-DD') 
-    parser.add_argument('--limit', required=False, type=int, default=200, help='number of posts to scrap')
+    parser.add_argument('--limit', required=False, type=int, default=300, help='number of posts to scrap')
     parser.add_argument('--weight-reactions', required=False, type=float, default=1.0, help='from 0 to 1')
     parser.add_argument('--weight-shares', required=False, type=float, default=1.0, help='from 0 to 1')
     parser.add_argument('--weight-comments', required=False, type=float, default=1.0, help='from 0 to 1')
