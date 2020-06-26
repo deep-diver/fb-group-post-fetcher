@@ -1,4 +1,4 @@
-![Send a newsletter.](https://github.com/deep-diver/fb-group-post-fetcher/workflows/Send%20a%20newsletter./badge.svg?branch=master)
+![Send a newsletter.](https://github.com/deep-diver/fb-group-post-fetcher/workflows/Send%20a%20newsletter./badge.svg?branch=master) ![Send a newsletter every 6am on Friday.](https://github.com/deep-diver/fb-group-post-fetcher/workflows/Send%20a%20newsletter%20every%206am%20on%20Friday./badge.svg?branch=master)
 
 # Facebook Group Post Fetcher + Emailing
 
