@@ -1,4 +1,4 @@
-name: Send a newsletter every 5am on Friday.
+name: newsletter_every_fri
 
 on:
   schedule:
