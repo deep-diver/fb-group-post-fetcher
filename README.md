@@ -1,5 +1,5 @@
 ![newsletter_every_fri](https://github.com/deep-diver/fb-group-post-fetcher/workflows/newsletter_every_fri/badge.svg?branch=master)
-![newsletter_every_wed_fri](https://github.com/deep-diver/fb-group-post-fetcher/workflows/newsletter_every_wed_fri/badge.svg?branch=master)
+![newsletter_every_wed_sun](https://github.com/deep-diver/fb-group-post-fetcher/workflows/newsletter_every_wed_sun/badge.svg?branch=master)
 ![newletter_every_14th_day](https://github.com/deep-diver/fb-group-post-fetcher/workflows/newletter_every_14th_day/badge.svg?branch=master)
 
 
