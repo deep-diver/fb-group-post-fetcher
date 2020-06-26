@@ -1,9 +1,9 @@
-name: newsletter_every_wed
+name: newsletter_every_wed_fri
 
 on:
   schedule:
     # every 8am(UTC) which is 5pm in Korea
-    - cron: "0 8 * * Wed"
+    - cron: "10 8 * * Wed,Fri"
 
   repository_dispatch:
     types: manual-trigger
