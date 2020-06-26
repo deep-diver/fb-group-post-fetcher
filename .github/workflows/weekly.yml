@@ -1,4 +1,4 @@
-name: Send a newsletter every 6am on Friday.
+name: Send a newsletter every 5am on Friday.
 
 on:
   schedule:

@@ -1,8 +1,8 @@
-name: Send a newsletter.
+name: newsletter_every_wed
 
 on:
   schedule:
-    # every 4am(UTC) which is 1pm in Korea
+    # every 8am(UTC) which is 5pm in Korea
     - cron: "0 8 * * Wed"
 
   repository_dispatch:
