@@ -1,4 +1,4 @@
-name: newsletter_every_wed_fri
+name: newsletter_every_wed_sun
 
 on:
   schedule:
