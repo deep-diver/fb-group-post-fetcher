@@ -33,7 +33,7 @@ def sendmail(posts, since, until):
 
         message = MIMEMultipart('alternative')
 
-        message['Subject'] = f"TF-KR TOP 10 포스팅 [{since} ~ {until}]"
+        message['Subject'] = f"TF-KR 뉴스레터 [{since} ~ {until}]"
         message['From'] = SMTP_USER
         message['To'] = ", ".join(mailinglist)
 
