@@ -47,7 +47,7 @@
       <!-- END CARD 2 -->
 
       <!-- TITLE -->
-      {% with each_section_title='상위 10개의 게시글' %} {% include 'title_section.html' %} {% endwith %}
+      {% with each_section_title='THE MOST EXCITING POSTS' %} {% include 'title_section.html' %} {% endwith %}
       <!-- TITLE -->
 
       <!-- START COLUMNS -->
@@ -56,7 +56,7 @@
           <table width="800" cellpadding="0" cellspacing="0" border="0" align="center" class="wrapper" bgcolor="#ffffff" style="max-width: 800px;">
             <tr>
               <td width="100%" align="center">
-                <table width="800" cellpadding="0" cellspacing="0" border="0" class="container">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" class="container">
                 <!-- 2 COLUMNS -->
                 {% for sub_posts in posts|slice(5) %}
                     {% with tmp_posts=sub_posts %} {% include 'main_contents.html' %} {% endwith %}
@@ -85,7 +85,7 @@
       <!-- END SPACER -->
 
       <!-- TITLE -->
-      {% with each_section_title='11~20번째 게시글' %} {% include 'title_section.html' %} {% endwith %}
+      {% with each_section_title='LESS BUT STILL INTERESTING' %} {% include 'title_section.html' %} {% endwith %}
       <!-- TITLE -->
 
       <!-- SUB SECTION -->

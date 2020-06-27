@@ -1,39 +1,18 @@
 <tr>
-    <td width="100%" valign="top" align="center" class="padding-container" style="max-height: 50px; padding-top: 0px!important; padding-bottom: 18px!important; mso-padding-alt: 0px 0px 18px 0px;">
-      <table width="800" cellpadding="0" cellspacing="0" border="0" align="center" class="wrapper">
+  <td valign="top" align="left" class="padding-container" style=" padding-top: 0px!important; padding-bottom: 18px!important;">
+      {% for sub_post in secondary_posts %}                            
+      <table style="padding-top: 20px; padding-bottom: 10px; border-bottom: 2px solid orange; table-layout: fixed; overflow-wrap: break-word;" cellpadding="0" cellspacing="0" border="0" class="container">
+        <!-- START BODY COPY -->
         <tr>
-          <td>
-            <table cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td style="border-radius: 10px;" class="card-1" width="100%" valign="top" align="center">
-                  <table style="border-radius: 3px;" width="800" cellpadding="0" cellspacing="0" border="0" align="center" class="wrapper" bgcolor="#ffffff">
-                    <tr>
-                      <td align="center">
-                        <a href="#">
-                        {% for sub_post in secondary_posts %}                            
-                        <table style="width:100%; padding-bottom: 5px; border-bottom: 2px solid orange; table-layout: fixed; overflow-wrap: break-word;" width="500" cellpadding="0" cellspacing="0" border="0" class="container">
-                          <!-- START BODY COPY -->
-                          
-                          <tr style="border-bottom: 2px solid orange;">
-                            <td class="td-padding" align="left" style="height: 50px; vertical-align: middle; width: 10%; max-width: 10%; font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 10px; line-height: 24px; padding-left: 18px; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 18px;">
-                              <img style="display: inline-block; vertical-align: bottom; max-width: 20px;" src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/reaction_icon.png?raw=true" width="20px"/> {{ sub_post.numbers["reaction"] }} 
-                            </td>
-                            <td class="td-padding" align="left" style="white-space: nowrap; overflow: hidden; vertical-align: middle; text-overflow: ellipsis; font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 16px; line-height: 24px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 18px;">
-                                <a href="{{ sub_post.link }}">{{ sub_post.message }}</a>
-                            </td>                                
-                          </tr>
-                          <!-- END BODY COPY -->
-                        </table>
-                        {% endfor %}
-                      </a>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
+          <td class="td-padding" align="left" style="height: 50px; vertical-align: middle; width: 44px; max-width: 44px; font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 10px; line-height: 24px; padding-left: 18px; padding-bottom: 0px!important; ">
+            <img style="display: inline-block; vertical-align: bottom; max-width: 20px;" src="https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/reaction_icon.png?raw=true" width="20px"/> {{ sub_post.numbers["reaction"] }} 
           </td>
+          <td class="td-padding" align="left" style="vertical-align: middle; font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 16px; line-height: 24px; padding-left: 18px">
+              <a href="{{ sub_post.link }}">{{ sub_post.message }}</a>
+          </td>                                
         </tr>
+        <!-- END BODY COPY -->
       </table>
-    </td>
-  </tr>
+      {% endfor %}
+  </td>
+</tr>

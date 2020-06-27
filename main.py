@@ -15,8 +15,8 @@ def handle_post_message_length(posts):
             post.message = markdown2.markdown(post.message)
             post.message = FacebookPost.replace_h_size(post.message)
         else:
-            post.message = post.message.replace("**", "")
-            post.message = f"{post.message[:80]} ..." if len(post.message) > 80 else post.message
+            post.message = post.message.replace("**", "").strip()
+            post.message = f"{post.message[:SUB_FIRST_WORDS]} ..." if len(post.message) > SUB_FIRST_WORDS else post.message
 
 async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS, SINCE, UNTIL):
     # 비동기 http 클라이언트 세션 생성

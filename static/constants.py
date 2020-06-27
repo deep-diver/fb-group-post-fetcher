@@ -11,6 +11,7 @@ SMTP_PASS   = os.getenv("SMTP_PASS")
 
 TOP_K       = int(os.getenv("TOP_K"))
 FIRST_WORDS = int(os.getenv("FIRST_WORDS"))
+SUB_FIRST_WORDS = int(os.getenv("SUB_FIRST_WORDS"))
 
 HEAD_IMAGE  = "https://github.com/deep-diver/fb-group-post-fetcher/blob/master/static/images/tfkr-newsletter-logo.png?raw=true"
 HEAD_ARTICLE= "텐서플로우 코리아에서 발행하는 뉴스레터 입니다."
