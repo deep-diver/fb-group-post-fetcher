@@ -46,6 +46,10 @@
       {% include 'head_section.html' %}
       <!-- END CARD 2 -->
 
+      <!-- TITLE -->
+      {% with each_section_title='상위 10개의 게시글' %} {% include 'title_section.html' %} {% endwith %}
+      <!-- TITLE -->
+
       <!-- START COLUMNS -->
       <tr>
         <td width="100%" valign="top" align="center" class="padding-container">
@@ -79,6 +83,15 @@
       </table>
       <![endif]-->
       <!-- END SPACER -->
+
+      <!-- TITLE -->
+      {% with each_section_title='11~20번째 게시글' %} {% include 'title_section.html' %} {% endwith %}
+      <!-- TITLE -->
+
+      <!-- SUB SECTION -->
+      {% include 'sub_contents.html' %}
+      <!-- SUB SECTION -->
+
       {% include 'footer_section.html' %}
       <!-- FOOTER -->
 

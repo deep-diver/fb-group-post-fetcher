@@ -22,7 +22,8 @@ def form_email_contents(posts):
 
     output = template.render(head_image=HEAD_IMAGE,
                              head_section_article=HEAD_ARTICLE,
-                             posts=posts)
+                             posts=posts[:10],
+                             secondary_posts=posts[11:20])
 
     return transform(output)    
     

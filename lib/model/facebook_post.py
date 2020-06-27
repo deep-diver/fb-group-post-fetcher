@@ -5,8 +5,6 @@ import pytz
 import markdown2 
 from typing import Dict, List
 
-from static.constants import FIRST_WORDS
-
 class FacebookPost(object):
     """
     글(Post)를 나타냅니다.
@@ -41,10 +39,6 @@ class FacebookPost(object):
         
         if result == "":
             return None
-
-        result = f"{result[:FIRST_WORDS]} ..... " if len(result) > FIRST_WORDS else result
-        result = markdown2.markdown(result)
-        result = FacebookPost.replace_h_size(result)
 
         return result
 

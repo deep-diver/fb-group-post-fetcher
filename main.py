@@ -8,6 +8,16 @@ from lib.token_refresh import *
 from lib.parsing import *
 from lib.email_utility import *
 
+def handle_post_message_length(posts):
+    for idx, post in enumerate(posts):
+        if idx < 10:
+            post.message = f"{post.message[:FIRST_WORDS]} ..... " if len(post.message) > FIRST_WORDS else post.message
+            post.message = markdown2.markdown(post.message)
+            post.message = FacebookPost.replace_h_size(post.message)
+        else:
+            post.message = post.message.replace("**", "")
+            post.message = f"{post.message[:80]} ..." if len(post.message) > 80 else post.message
+
 async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS, SINCE, UNTIL):
     # 비동기 http 클라이언트 세션 생성
     async with aiohttp.ClientSession() as session:
@@ -17,6 +27,8 @@ async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS, 
                                             (post.numbers["reaction"]    * WEIGHTS_REACTIONS + 
                                              post.numbers["share"]       * WEIGHTS_SHARES + 
                                              post.numbers["comment"]     * WEIGHTS_COMMENTS), reverse=True)
+            handle_post_message_length(sortedPost)
+
             # mock_html(sortedPost[:TOP_K])
             sendmail(sortedPost[:TOP_K], SINCE, UNTIL)
 
