@@ -27,13 +27,13 @@ def form_email_contents(posts):
 
     return transform(output)    
     
-def sendmail(posts, since, until):
+def sendmail(posts, title, since, until):
     if (mailinglist := get_mailing_list()) is not None:
         mailinglist = get_mailing_list()
 
         message = MIMEMultipart('alternative')
 
-        message['Subject'] = f"TF-KR 뉴스레터 [{since} ~ {until}]"
+        message['Subject'] = f"{title} [{since} ~ {until}]"
         message['From'] = SMTP_USER
         message['To'] = ", ".join(mailinglist)
 
@@ -43,4 +43,4 @@ def sendmail(posts, since, until):
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
             server.ehlo()
             server.login(SMTP_USER, SMTP_PASS)
-            server.sendmail(SMTP_USER, mailinglist, message.as_string())    
+            server.sendmail(SMTP_USER, mailinglist, message.as_string())

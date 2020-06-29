@@ -18,8 +18,7 @@ def handle_post_message_length(posts):
             post.message = post.message.replace("**", "").strip()
             post.message = f"{post.message[:SUB_FIRST_WORDS]} ..." if len(post.message) > SUB_FIRST_WORDS else post.message
 
-async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS, SINCE, UNTIL):
-    # 비동기 http 클라이언트 세션 생성
+async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS, EMAIL_TITLE, SINCE, UNTIL):
     async with aiohttp.ClientSession() as session:
         async with session.get(URL) as res:
             posts = parsing(await res.text(), SINCE, UNTIL)
@@ -28,14 +27,13 @@ async def fetch_posts(URL, WEIGHTS_REACTIONS, WEIGHTS_SHARES, WEIGHTS_COMMENTS, 
                                              post.numbers["share"]       * WEIGHTS_SHARES + 
                                              post.numbers["comment"]     * WEIGHTS_COMMENTS), reverse=True)
             handle_post_message_length(sortedPost)
-
-            # mock_html(sortedPost[:TOP_K])
-            sendmail(sortedPost[:TOP_K], SINCE, UNTIL)
+            sendmail(sortedPost[:TOP_K], EMAIL_TITLE, SINCE, UNTIL)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Please specify the range of dates and the number of posts to be collected')
     parser.add_argument('--since', required=True, type=str, help='dates in YYYY-MM-DD') 
-    parser.add_argument('--until', required=True, type=str, help='dates in YYYY-MM-DD') 
+    parser.add_argument('--until', required=True, type=str, help='dates in YYYY-MM-DD')
+    parser.add_argument('--email-title', required=True, type=str, help='title for the email')
     parser.add_argument('--limit', required=False, type=int, default=300, help='number of posts to scrap')
     parser.add_argument('--weight-reactions', required=False, type=float, default=1.0, help='from 0 to 1')
     parser.add_argument('--weight-shares', required=False, type=float, default=1.0, help='from 0 to 1')
@@ -51,6 +49,7 @@ if __name__ == "__main__":
                             args.weight_reactions, 
                             args.weight_shares, 
                             args.weight_comments,
+                            args.email_title,
                             args.since,
                             args.until))
 
