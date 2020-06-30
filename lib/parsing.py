@@ -5,8 +5,6 @@ from lib.model.facebook_post import FacebookPost
 from typing import List
 import markdown2 
 
-from static.constants import FIRST_WORDS
-
 def parsing_indivisual_post(data) -> FacebookPost:
     return FacebookPost.from_json(data)
 

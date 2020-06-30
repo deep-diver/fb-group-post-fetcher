@@ -3,7 +3,8 @@ import asyncio
 import aiohttp
 import argparse
 
-from static.constants import *
+from static.constants import BASE_URL, TAIL_URL
+from static.constants import FIRST_WORDS, SUB_FIRST_WORDS, TOP_K
 from lib.token_refresh import *
 from lib.parsing import *
 from lib.email_utility import *

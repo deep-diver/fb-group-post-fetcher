@@ -1,6 +1,7 @@
 from typing import List
 
-from static.constants import *
+from static.constants import SMTP_USER, SMTP_PASS
+from static.constants import HEAD_IMAGE, HEAD_ARTICLE
 
 import smtplib
 import mimetypes
