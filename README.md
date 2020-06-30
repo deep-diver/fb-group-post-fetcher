@@ -28,8 +28,8 @@ Also the scrapped posts are sorted via the following formula. You can change the
 ### CLI
 ```shell
 $ python main.py --help
-usage: main.py [-h] --since SINCE --until UNTIL [--limit LIMIT] [--weight-reactions WEIGHT_REACTIONS]
-               [--weight-shares WEIGHT_SHARES] [--weight-comments WEIGHT_COMMENTS]
+usage: main.py [-h] --since SINCE --until UNTIL --email-title EMAIL_TITLE [--limit LIMIT] 
+               [--weight-reactions WEIGHT_REACTIONS] [--weight-shares WEIGHT_SHARES] [--weight-comments WEIGHT_COMMENTS]
 
 Please specify the range of dates and the number of posts to be collected
 
@@ -37,6 +37,8 @@ optional arguments:
   -h, --help            show this help message and exit
   --since SINCE         dates in YYYY-MM-DD
   --until UNTIL         dates in YYYY-MM-DD
+  --email-title EMAIL_TITLE
+                        title for the email
   --limit LIMIT         number of posts to scrap
   --weight-reactions WEIGHT_REACTIONS
                         from 0 to 1
