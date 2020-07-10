@@ -141,3 +141,14 @@ Also the scrapped posts are sorted via the following formula. You can change the
 ```
   (# of reactions * WEIGHT_REACTIONS) + (# of shares * WEIGHT_SHARES) + (# of comments * WEIGHT_COMMENTS)
 ```
+
+## Who is behind this work
+
+[![](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/images/0)](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/links/0)
+[![](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/images/1)](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/links/1)
+[![](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/images/2)](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/links/2)
+[![](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/images/3)](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/links/3)
+[![](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/images/4)](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/links/4)
+[![](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/images/5)](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/links/5)
+[![](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/images/6)](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/links/6)
+[![](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/images/7)](https://sourcerer.io/fame/deep-diver/deep-diver/fb-group-post-fetcher/links/7)
