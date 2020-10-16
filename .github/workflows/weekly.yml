@@ -28,7 +28,8 @@ jobs:
         run: gpg --quiet --batch --yes --decrypt --passphrase="$SYMMETRIC_KEY" --output=.env .env.gpg
 
       - name: Install dependencies
-        run: pipenv install
+        run: pip install pipenv
+#         run: pipenv install
 
       - name: Set Variables
         id: var
