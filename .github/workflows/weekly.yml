@@ -15,20 +15,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python 3.8
+        
+      - name: Set up Python 3.8.3
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.8.3
+
       - name: Install pipenv
-        uses: dschep/install-pipenv-action@v1        
+        run: pip install pipenv
+
+      - name: Install dependencies via pipenv
+        run: pipenv install
 
       - name: Decrypt .env.gpg => .env
         env:
           SYMMETRIC_KEY: ${{ secrets.GPG_KEY }}
         run: gpg --quiet --batch --yes --decrypt --passphrase="$SYMMETRIC_KEY" --output=.env .env.gpg
-
-      - name: Install dependencies
-        run: pipenv install
 
       - name: Set Variables
         id: var
@@ -36,7 +38,6 @@ jobs:
           echo "::set-output name=SINCE::$(date --date='7 days ago' +%Y-%m-%d)"
           echo "::set-output name=UNTIL::$(date +'%Y-%m-%d')"
           echo "::set-output name=TITLE::TF-KR 주간 뉴스레터"  
-
       - name: Sending out Email
         run: 
           export $(cat .env | xargs) && pipenv run python main.py --since ${{ steps.var.outputs.SINCE }} --until ${{ steps.var.outputs.UNTIL }} --email-title '${{ steps.var.outputs.TITLE }}'
