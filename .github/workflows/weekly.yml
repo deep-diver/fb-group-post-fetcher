@@ -7,8 +7,6 @@ on:
 
   repository_dispatch:
     types: manual-trigger
-    
-  workflow_dispatch:
 
 jobs:
   newsletter:
