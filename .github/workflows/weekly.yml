@@ -4,10 +4,6 @@ on:
   schedule:
     # every 3am(UTC) which is 12pm in Korea on Friday
     - cron: "0 3 * * FRI"
-
-  repository_dispatch:
-    types: manual-trigger
-    
   workflow_dispatch:
 
 jobs:
